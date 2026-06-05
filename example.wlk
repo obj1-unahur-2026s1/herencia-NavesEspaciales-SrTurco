@@ -42,3 +42,81 @@ class NaveBaliza inherits Nave {
   }
 
 }
+
+class NavesPasajeros inherits Nave {
+  var cantidadPasajeros
+  var racionDeComida
+  var racionDeBebida
+
+  method cantidadPasajeros() = cantidadPasajeros
+  method racionDeBebida() = racionDeBebida
+  method racionDeComida() = racionDeComida
+
+  method cargarComida(cantidad) {
+    racionDeComida += cantidad
+
+  } 
+  method descargaComida(cantidad) {
+    racionDeComida += cantidad
+    
+  }  
+  method cargarBebida(cantidad) {
+    racionDeBebida += cantidad
+
+  } 
+  method descargaBebida(cantidad) {
+    racionDeBebida += cantidad
+    
+  } 
+
+  override method prepararViaje() {
+    self.cargarBebida(cantidadPasajeros*4)
+    self.cargarComida(cantidadPasajeros*6)
+    self.acercarseUnPocoAlSol()
+  }
+  
+}
+
+class NavesCombate inherits Nave {
+var esVisible
+var tieneMisislesDesplegados
+const mensajes = []
+
+method ponerseVisible() {
+  esVisible = true 
+}   
+method ponerseInvisble() {
+  esVisible= false
+}
+method estaInvisble() {
+  return (not esVisible)  
+}
+
+method desplegarMisiles() {
+  tieneMisislesDesplegados = true 
+}   
+method replegarMisiles() {
+  tieneMisislesDesplegados = false
+}
+method emitirMensaje(unMensaje) {
+   mensajes.add(unMensaje)
+}
+method mensajesEmitidos() {
+  mensajes
+  
+}
+method primerMensajeEmitido() {
+  return mensajes.first()
+  
+}
+method ultimoMensajeEmitido() {
+  return mensajes.last()
+}
+
+method prepararViaje() {
+  self.ponerseVisible()
+  self.replegarMisiles()
+  self.acelerar(1500)
+  self.emitirMensaje("Saliendo en mision")
+}
+}
